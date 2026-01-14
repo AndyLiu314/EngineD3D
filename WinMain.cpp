@@ -1,6 +1,8 @@
 #include <Windows.h>
 #include "utility/WindowsMessageMap.h"
 #include <string>
+#include <iostream>
+#include <sstream>
 
 // Helper function to convert std::string to std::wstring
 inline std::wstring StringToWString(const std::string& str)
@@ -34,6 +36,24 @@ LRESULT CALLBACK WndProc(
 	case WM_KEYUP:
 		if (wParam == 'F') {
 			SetWindowText(hWnd, L"released F");
+		}
+		break;
+
+	case WM_CHAR:
+		{
+			static std::wstring title;
+			title.push_back(static_cast<wchar_t>(wParam));
+			SetWindowText(hWnd, title.c_str());
+		
+		}
+		break;
+
+	case WM_LBUTTONDOWN:
+		{
+			POINTS pt = MAKEPOINTS(lParam);
+			std::wostringstream oss;
+			oss << L"Mouse Clicked at (" << pt.x << L"," << pt.y << L")";
+			SetWindowText(hWnd, oss.str().c_str());
 		}
 		break;
 	}
