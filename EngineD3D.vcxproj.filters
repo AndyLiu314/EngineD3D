@@ -35,5 +35,8 @@
     <ClCompile Include="src\win\WindowsMessageMap.cpp">
       <Filter>Source Files\win</Filter>
     </ClCompile>
+    <ClCompile Include="src\win\Window.cpp">
+      <Filter>Source Files\win</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
