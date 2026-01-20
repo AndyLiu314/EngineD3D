@@ -1,31 +1,10 @@
-/******************************************************************************************
-*	Chili Direct3D Engine																  *
-*	Copyright 2018 PlanetChili <http://www.planetchili.net>								  *
-*																						  *
-*	This file is part of Chili Direct3D Engine.											  *
-*																						  *
-*	Chili Direct3D Engine is free software: you can redistribute it and/or modify		  *
-*	it under the terms of the GNU General Public License as published by				  *
-*	the Free Software Foundation, either version 3 of the License, or					  *
-*	(at your option) any later version.													  *
-*																						  *
-*	The Chili Direct3D Engine is distributed in the hope that it will be useful,		  *
-*	but WITHOUT ANY WARRANTY; without even the implied warranty of						  *
-*	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the						  *
-*	GNU General Public License for more details.										  *
-*																						  *
-*	You should have received a copy of the GNU General Public License					  *
-*	along with The Chili Direct3D Engine.  If not, see <http://www.gnu.org/licenses/>.    *
-******************************************************************************************/
 #include "win/Window.h"
 
 
-// Window Class Stuff
 Window::WindowClass Window::WindowClass::wndClass;
 
 Window::WindowClass::WindowClass() noexcept
-	:
-	hInst(GetModuleHandle(nullptr))
+	: hInst(GetModuleHandle(nullptr))
 {
 	WNDCLASSEX wc = { 0 };
 	wc.cbSize = sizeof(wc);
@@ -59,24 +38,31 @@ HINSTANCE Window::WindowClass::GetInstance() noexcept
 }
 
 
-// Window Stuff
 Window::Window(int width, int height, const wchar_t* name) noexcept
+	: width(width), height(height)
 {
-	// calculate window size based on desired client region size
 	RECT wr;
 	wr.left = 100;
 	wr.right = width + wr.left;
 	wr.top = 100;
 	wr.bottom = height + wr.top;
+
 	AdjustWindowRect(&wr, WS_CAPTION | WS_MINIMIZEBOX | WS_SYSMENU, FALSE);
-	// create window & get hWnd
+
 	hWnd = CreateWindow(
-		WindowClass::GetName(), name,
+		WindowClass::GetName(),
+		name,
 		WS_CAPTION | WS_MINIMIZEBOX | WS_SYSMENU,
-		CW_USEDEFAULT, CW_USEDEFAULT, wr.right - wr.left, wr.bottom - wr.top,
-		nullptr, nullptr, WindowClass::GetInstance(), this
+		CW_USEDEFAULT,
+		CW_USEDEFAULT,
+		wr.right - wr.left,
+		wr.bottom - wr.top,
+		nullptr,
+		nullptr,
+		WindowClass::GetInstance(),
+		this
 	);
-	// show window
+
 	ShowWindow(hWnd, SW_SHOWDEFAULT);
 }
 
