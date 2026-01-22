@@ -1,4 +1,5 @@
 #include "win/Window.h"
+#include "utility/StringConversion.h"
 
 int CALLBACK WinMain(
 	_In_ HINSTANCE hInstance,
@@ -28,12 +29,12 @@ int CALLBACK WinMain(
 
 	catch (const EngineException& e)
 	{
-		MessageBoxA(nullptr, e.what(), e.GetType(), MB_OK | MB_ICONEXCLAMATION);
+		MessageBox(nullptr, ToWide(e.what()).c_str(), ToWide(e.GetType()).c_str(), MB_OK | MB_ICONEXCLAMATION);
 	}
 
 	catch (const std::exception& e)
 	{
-		MessageBoxA(nullptr, e.what(), "Standard Exception", MB_OK | MB_ICONEXCLAMATION);
+		MessageBox(nullptr, ToWide(e.what()).c_str(), L"Standard Exception", MB_OK | MB_ICONEXCLAMATION);
 	}
 
 	catch (...)

@@ -19,19 +19,34 @@
     <Filter Include="Source Files\core">
       <UniqueIdentifier>{8f1fae3d-bd17-47da-8f74-9d34852e4f1d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\utility">
+      <UniqueIdentifier>{e7862708-4589-42d1-b7bc-96d3b9138c10}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\utility">
+      <UniqueIdentifier>{c01bb514-c3cc-473a-a908-d6f0add0e5dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\win">
+      <UniqueIdentifier>{c124eff1-d012-48c3-8069-3e2b60014d27}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core">
+      <UniqueIdentifier>{71fa083d-440c-46c0-ac02-22ef6662169c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\utility\StringConversion.h">
+      <Filter>Header Files\utility</Filter>
+    </ClInclude>
     <ClInclude Include="include\win\CustomWin.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\win</Filter>
     </ClInclude>
     <ClInclude Include="include\win\Window.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\win</Filter>
     </ClInclude>
     <ClInclude Include="include\win\WindowsMessageMap.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\win</Filter>
     </ClInclude>
     <ClInclude Include="include\core\EngineException.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\core</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -46,6 +61,9 @@
     </ClCompile>
     <ClCompile Include="src\core\EngineException.cpp">
       <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utility\StringConversion.cpp">
+      <Filter>Source Files\utility</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
