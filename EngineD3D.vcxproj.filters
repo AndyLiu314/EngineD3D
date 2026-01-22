@@ -16,6 +16,9 @@
     <Filter Include="Source Files\win">
       <UniqueIdentifier>{e4f71647-04ce-4a44-a6e6-57e42631168d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\core">
+      <UniqueIdentifier>{8f1fae3d-bd17-47da-8f74-9d34852e4f1d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\win\CustomWin.h">
@@ -25,6 +28,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\win\WindowsMessageMap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\EngineException.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -37,6 +43,9 @@
     </ClCompile>
     <ClCompile Include="src\win\Window.cpp">
       <Filter>Source Files\win</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\EngineException.cpp">
+      <Filter>Source Files\core</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
