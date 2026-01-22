@@ -1,4 +1,5 @@
 #include "win/Window.h"
+#include "utility/StringConversion.h"
 #include <sstream>
 
 
@@ -120,8 +121,8 @@ const char* Window::Exception::what() const noexcept
 {
 	std::ostringstream oss;
 	oss << GetType() << std::endl
-		<< "[Error Code]" << GetErrorCode() << std::endl
-		<< "[Description]" << GetErrorString() << std::endl
+		<< "[Error Code] " << GetErrorCode() << std::endl
+		<< "[Description] " << GetErrorString() << std::endl
 		<< GetOriginString();
 	whatBuffer = oss.str();
 	return whatBuffer.c_str();
@@ -134,7 +135,7 @@ const char* Window::Exception::GetType() const noexcept
 
 std::string Window::Exception::TranslateErrorCode(HRESULT hr) noexcept
 {
-	char* pMsgBuf = nullptr;
+	wchar_t* pMsgBuf = nullptr;
 	DWORD nMsgLen = FormatMessage(
 		FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS,
 		nullptr,
@@ -147,10 +148,10 @@ std::string Window::Exception::TranslateErrorCode(HRESULT hr) noexcept
 
 	if (nMsgLen == 0)
 	{
-		return "Unidentified error code";
+		return "Unidentified Error Code";
 	}
 
-	std::string errorString = pMsgBuf;
+	std::string errorString = ToNarrow(pMsgBuf);
 	LocalFree(pMsgBuf);
 	return errorString;
 }
