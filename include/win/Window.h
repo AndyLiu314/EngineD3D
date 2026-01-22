@@ -16,7 +16,17 @@ private:
 	int height;
 	HWND hWnd;
 
+	/**
+	* Initial windows procedure that runs during window creation.
+	* Captures the 'this' windows object pointer passed through CreateWindow().
+	* Stores the pointer in the window's user data and switches to the Thunk procedure.
+	*/
 	static LRESULT CALLBACK HandleMsgSetup(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) noexcept;
+
+	/**
+	* Regular windows procedure after setup is finished.
+	* Grabs window pointer from window's user data and calls message handler method.
+	*/
 	static LRESULT CALLBACK HandleMsgThunk(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) noexcept;
 	LRESULT HandleMsg(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) noexcept;
 
@@ -56,3 +66,4 @@ private:
 };
 
 #define EWND_EXCEPT(hr) Window::Exception(__LINE__, __FILE__, hr)
+#define EWND_LAST_EXCEPT() Window::Exception(__LINE__, __FILE__, GetLastError())
