@@ -1,5 +1,6 @@
 #pragma once
 #include "win/CustomWin.h"
+#include "core/EngineException.h"
 
 class Window
 {
@@ -19,6 +20,22 @@ private:
 	static LRESULT CALLBACK HandleMsgThunk(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) noexcept;
 	LRESULT HandleMsg(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) noexcept;
 
+public:
+	class Exception : public EngineException
+	{
+	public:
+		Exception(int line, const char* file, HRESULT hr) noexcept;
+
+		const char* what() const noexcept override;
+		virtual const char* GetType() const noexcept override;
+		HRESULT GetErrorCode() const noexcept;
+		static std::string TranslateErrorCode(HRESULT hr) noexcept;
+		std::string GetErrorString() const noexcept;
+
+	private:
+		HRESULT hr;
+	};
+
 private:
 	class WindowClass
 	{
@@ -37,3 +54,5 @@ private:
 		HINSTANCE hInst;
 	};
 };
+
+#define EWND_EXCEPT(hr) Window::Exception(__LINE__, __FILE__, hr)
