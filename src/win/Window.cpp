@@ -40,7 +40,7 @@ HINSTANCE Window::WindowClass::GetInstance() noexcept
 }
 
 
-Window::Window(int width, int height, const wchar_t* name) noexcept
+Window::Window(int width, int height, const wchar_t* name)
 	: width(width), height(height)
 {
 	RECT wr;
@@ -49,7 +49,10 @@ Window::Window(int width, int height, const wchar_t* name) noexcept
 	wr.top = 100;
 	wr.bottom = height + wr.top;
 
-	AdjustWindowRect(&wr, WS_CAPTION | WS_MINIMIZEBOX | WS_SYSMENU, FALSE);
+	if FAILED(AdjustWindowRect(&wr, WS_CAPTION | WS_MINIMIZEBOX | WS_SYSMENU, FALSE))
+	{
+		throw EWND_LAST_EXCEPT();
+	}
 
 	hWnd = CreateWindow(
 		WindowClass::GetName(),
@@ -64,6 +67,11 @@ Window::Window(int width, int height, const wchar_t* name) noexcept
 		WindowClass::GetInstance(),
 		this
 	);
+
+	if (hWnd == nullptr)
+	{
+		throw EWND_LAST_EXCEPT();
+	}
 
 	ShowWindow(hWnd, SW_SHOWDEFAULT);
 }
