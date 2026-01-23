@@ -60,6 +60,9 @@
     <ClInclude Include="include\input\Keyboard.h">
       <Filter>Header Files\input</Filter>
     </ClInclude>
+    <ClInclude Include="include\input\Mouse.h">
+      <Filter>Header Files\input</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\WinMain.cpp">
@@ -78,6 +81,9 @@
       <Filter>Source Files\utility</Filter>
     </ClCompile>
     <ClCompile Include="src\input\Keyboard.cpp">
+      <Filter>Source Files\input</Filter>
+    </ClCompile>
+    <ClCompile Include="src\input\Mouse.cpp">
       <Filter>Source Files\input</Filter>
     </ClCompile>
   </ItemGroup>
