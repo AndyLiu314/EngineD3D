@@ -31,6 +31,12 @@
     <Filter Include="Header Files\core">
       <UniqueIdentifier>{71fa083d-440c-46c0-ac02-22ef6662169c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\input">
+      <UniqueIdentifier>{def5be54-5426-45e8-a2f7-d23c566de7d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\input">
+      <UniqueIdentifier>{d7697917-c732-4ae6-ae7b-db1f0fe3372d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\utility\StringConversion.h">
@@ -51,6 +57,9 @@
     <ClInclude Include="resource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\input\Keyboard.h">
+      <Filter>Header Files\input</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\WinMain.cpp">
@@ -67,6 +76,9 @@
     </ClCompile>
     <ClCompile Include="src\utility\StringConversion.cpp">
       <Filter>Source Files\utility</Filter>
+    </ClCompile>
+    <ClCompile Include="src\input\Keyboard.cpp">
+      <Filter>Source Files\input</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

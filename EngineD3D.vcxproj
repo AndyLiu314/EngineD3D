@@ -148,6 +148,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="include\core\EngineException.h" />
+    <ClInclude Include="include\input\Keyboard.h" />
     <ClInclude Include="include\utility\StringConversion.h" />
     <ClInclude Include="include\win\CustomWin.h" />
     <ClInclude Include="include\win\Window.h" />
@@ -156,6 +157,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\core\EngineException.cpp" />
+    <ClCompile Include="src\input\Keyboard.cpp" />
     <ClCompile Include="src\utility\StringConversion.cpp" />
     <ClCompile Include="src\WinMain.cpp" />
     <ClCompile Include="src\win\Window.cpp" />
