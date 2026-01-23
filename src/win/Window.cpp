@@ -50,7 +50,7 @@ Window::Window(int width, int height, const wchar_t* name)
 	wr.top = 100;
 	wr.bottom = height + wr.top;
 
-	if FAILED(AdjustWindowRect(&wr, WS_CAPTION | WS_MINIMIZEBOX | WS_SYSMENU, FALSE))
+	if (!AdjustWindowRect(&wr, WS_CAPTION | WS_MINIMIZEBOX | WS_SYSMENU, FALSE))
 	{
 		throw EWND_LAST_EXCEPT();
 	}
@@ -109,6 +109,29 @@ LRESULT Window::HandleMsg(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) noe
 	case WM_CLOSE:
 		PostQuitMessage(0);
 		return 0;
+
+	case WM_KILLFOCUS:
+		kbd.ClearState();
+		break;
+
+	/**** KEYBOARD MESSAGES - START ****/
+	case WM_KEYDOWN:
+	case WM_SYSKEYDOWN:
+		if (!(lParam & 0x40000000) || kbd.AutorepeatIsEnabled()) // Filters 
+		{
+			kbd.OnKeyPressed(static_cast<unsigned char>(wParam));
+		}
+		break;
+
+	case WM_KEYUP:
+	case WM_SYSKEYUP:
+		kbd.OnKeyReleased(static_cast<unsigned char>(wParam));
+		break;
+
+	case WM_CHAR:
+		kbd.OnChar(static_cast<unsigned char>(wParam));
+		break;
+	/**** KEYBOARD MESSAGES - END ****/
 	}
 
 	return DefWindowProc(hWnd, msg, wParam, lParam);
