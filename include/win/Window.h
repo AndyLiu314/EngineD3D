@@ -2,6 +2,7 @@
 #include "win/CustomWin.h"
 #include "core/EngineException.h"
 #include "input/Keyboard.h"
+#include "input/Mouse.h"
 
 class Window
 {
@@ -43,11 +44,13 @@ public:
 	Window(int width, int height, const wchar_t* name);
 	~Window();
 	Window(const Window&) = delete;
-
 	Window& operator=(const Window&) = delete;
+
+	void SetTitle(const std::string& title);
 
 public:
 	Keyboard kbd;
+	Mouse mouse;
 
 private:
 	int width;

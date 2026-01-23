@@ -82,6 +82,14 @@ Window::~Window()
 	DestroyWindow(hWnd);
 }
 
+void Window::SetTitle(const std::string& title)
+{
+	if (SetWindowText(hWnd, ToWide(title).c_str()) == 0)
+	{
+		throw EWND_LAST_EXCEPT();
+	}
+}
+
 LRESULT WINAPI Window::HandleMsgSetup(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) noexcept
 {
 	if (msg == WM_NCCREATE)
@@ -106,6 +114,7 @@ LRESULT Window::HandleMsg(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) noe
 {
 	switch (msg)
 	{
+	/**** GENERAL WINDOWS MESSAGES - START ****/
 	case WM_CLOSE:
 		PostQuitMessage(0);
 		return 0;
@@ -113,6 +122,8 @@ LRESULT Window::HandleMsg(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) noe
 	case WM_KILLFOCUS:
 		kbd.ClearState();
 		break;
+	/**** GENERAL WINDOWS MESSAGES - END ****/
+
 
 	/**** KEYBOARD MESSAGES - START ****/
 	case WM_KEYDOWN:
@@ -132,6 +143,58 @@ LRESULT Window::HandleMsg(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) noe
 		kbd.OnChar(static_cast<unsigned char>(wParam));
 		break;
 	/**** KEYBOARD MESSAGES - END ****/
+
+
+	/**** MOUSE MESSAGES - START ****/
+	case WM_MOUSEMOVE:
+	{
+		const POINTS pt = MAKEPOINTS(lParam);
+		mouse.OnMouseMove(pt.x, pt.y);
+		break;
+	}
+
+	case WM_LBUTTONDOWN:
+	{
+		const POINTS pt = MAKEPOINTS(lParam);
+		mouse.OnLeftPressed(pt.x, pt.y);
+		break;
+	}
+
+	case WM_RBUTTONDOWN:
+	{
+		const POINTS pt = MAKEPOINTS(lParam);
+		mouse.OnRightPressed(pt.x, pt.y);
+		break;
+	}
+
+	case WM_LBUTTONUP:
+	{
+		const POINTS pt = MAKEPOINTS(lParam);
+		mouse.OnLeftReleased(pt.x, pt.y);
+		break;
+	}
+
+	case WM_RBUTTONUP:
+	{
+		const POINTS pt = MAKEPOINTS(lParam);
+		mouse.OnRightReleased(pt.x, pt.y);
+		break;
+	}
+
+	case WM_MOUSEWHEEL:
+	{
+		const POINTS pt = MAKEPOINTS(lParam);
+		if (GET_WHEEL_DELTA_WPARAM(wParam) > 0)
+		{
+			mouse.OnWheelUp(pt.x, pt.y);
+		}
+		else if (GET_WHEEL_DELTA_WPARAM(wParam) < 0)
+		{
+			mouse.OnWheelDown(pt.x, pt.y);
+		}
+		break;
+	}
+	/**** MOUSE MESSAGES - END ****/
 	}
 
 	return DefWindowProc(hWnd, msg, wParam, lParam);
