@@ -48,6 +48,9 @@
     <ClInclude Include="include\core\EngineException.h">
       <Filter>Header Files\core</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\WinMain.cpp">
@@ -65,5 +68,15 @@
     <ClCompile Include="src\utility\StringConversion.cpp">
       <Filter>Source Files\utility</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="EngineD3D.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="assets\icons\watermelon_fruit_food_icon_148899.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>
