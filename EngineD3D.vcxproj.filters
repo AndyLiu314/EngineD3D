@@ -54,14 +54,14 @@
     <ClInclude Include="include\core\EngineException.h">
       <Filter>Header Files\core</Filter>
     </ClInclude>
-    <ClInclude Include="resource.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\input\Keyboard.h">
       <Filter>Header Files\input</Filter>
     </ClInclude>
     <ClInclude Include="include\input\Mouse.h">
       <Filter>Header Files\input</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\resource.h">
+      <Filter>Header Files\core</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

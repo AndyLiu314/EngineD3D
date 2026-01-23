@@ -148,13 +148,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="include\core\EngineException.h" />
+    <ClInclude Include="include\core\resource.h" />
     <ClInclude Include="include\input\Keyboard.h" />
     <ClInclude Include="include\input\Mouse.h" />
     <ClInclude Include="include\utility\StringConversion.h" />
     <ClInclude Include="include\win\CustomWin.h" />
     <ClInclude Include="include\win\Window.h" />
     <ClInclude Include="include\win\WindowsMessageMap.h" />
-    <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\core\EngineException.cpp" />

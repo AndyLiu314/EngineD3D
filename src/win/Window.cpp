@@ -1,7 +1,7 @@
 #include "win/Window.h"
 #include "utility/StringConversion.h"
 #include <sstream>
-#include "resource.h"
+#include "core/resource.h"
 
 
 Window::WindowClass Window::WindowClass::wndClass;
