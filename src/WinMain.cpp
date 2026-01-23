@@ -10,7 +10,7 @@ int CALLBACK WinMain(
 {
 	try
 	{
-		Window wnd(800, 300, L"Donkey Fart Box");
+		Window wnd(800, 300, L"Liao Boom Square");
 
 		MSG msg;
 		BOOL gResult;
