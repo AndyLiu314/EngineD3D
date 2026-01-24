@@ -1,6 +1,5 @@
-#include "win/Window.h"
+#include "core/App.h"
 #include "utility/StringConversion.h"
-#include <sstream>
 
 int CALLBACK WinMain(
 	_In_ HINSTANCE hInstance,
@@ -10,33 +9,7 @@ int CALLBACK WinMain(
 {
 	try
 	{
-		Window wnd(800, 300, L"Liao Boom Square");
-
-		MSG msg;
-		BOOL gResult;
-		while ((gResult = GetMessage(&msg, nullptr, 0, 0)) > 0)
-		{
-			TranslateMessage(&msg);
-			DispatchMessage(&msg);
-			
-			while (!wnd.mouse.IsEmpty())
-			{
-				const auto e = wnd.mouse.Read();
-				if (e.GetType() == Mouse::Event::Type::Move)
-				{
-					std::ostringstream oss;
-					oss << "Mouse Position: (" << e.GetPosX() << ", " << e.GetPosY() << ")";
-					wnd.SetTitle(oss.str());
-				}
-			}
-		}
-
-		if (gResult == -1)
-		{
-			return -1;
-		}
-
-		return static_cast<int>(msg.wParam);
+		return App{800, 600, L"Liao Boom Square"}.Go();
 	}
 
 	catch (const EngineException& e)

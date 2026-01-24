@@ -3,6 +3,7 @@
 #include "core/EngineException.h"
 #include "input/Keyboard.h"
 #include "input/Mouse.h"
+#include <optional>
 
 class Window
 {
@@ -47,6 +48,7 @@ public:
 	Window& operator=(const Window&) = delete;
 
 	void SetTitle(const std::string& title);
+	static std::optional<int> ProcessMessages();
 
 public:
 	Keyboard kbd;

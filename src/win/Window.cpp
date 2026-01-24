@@ -90,6 +90,57 @@ void Window::SetTitle(const std::string& title)
 	}
 }
 
+std::optional<int> Window::ProcessMessages()
+{
+	MSG msg;
+	while (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))
+	{
+		if (msg.message == WM_QUIT)
+		{
+			return static_cast<int>(msg.wParam);
+		}
+		TranslateMessage(&msg);
+		DispatchMessage(&msg);
+
+		//while (!wnd.mouse.IsEmpty())
+		//{
+		//	const auto e = wnd.mouse.Read();
+		//	if (e.GetType() == Mouse::Event::Type::Move)
+		//	{
+		//		std::ostringstream oss;
+		//		oss << "Mouse Position: (" << e.GetPosX() << ", " << e.GetPosY() << ")";
+		//		wnd.SetTitle(oss.str());
+		//	}
+		//}
+
+		//static int i = 0;
+		//while (!wnd.mouse.IsEmpty())
+		//{
+		//	const auto e = wnd.mouse.Read();
+		//	switch (e.GetType())
+		//	{
+		//	case Mouse::Event::Type::WheelUp:
+		//		i++;
+		//		{
+		//			std::ostringstream oss;
+		//			oss << "Up: " << i;
+		//			wnd.SetTitle(oss.str());
+		//		}
+		//		break;
+		//	case Mouse::Event::Type::WheelDown:
+		//		i--;
+		//		{
+		//			std::ostringstream oss;
+		//			oss << "Down: " << i;
+		//			wnd.SetTitle(oss.str());
+		//		}
+		//		break;
+		//	}
+		//}
+	}
+	return {};
+}
+
 LRESULT WINAPI Window::HandleMsgSetup(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) noexcept
 {
 	if (msg == WM_NCCREATE)
