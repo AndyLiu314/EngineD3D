@@ -63,6 +63,9 @@
     <ClInclude Include="include\core\resource.h">
       <Filter>Header Files\core</Filter>
     </ClInclude>
+    <ClInclude Include="include\utility\Timer.h">
+      <Filter>Header Files\utility</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\WinMain.cpp">
@@ -85,6 +88,9 @@
     </ClCompile>
     <ClCompile Include="src\input\Mouse.cpp">
       <Filter>Source Files\input</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utility\Timer.cpp">
+      <Filter>Source Files\utility</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

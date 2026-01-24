@@ -152,6 +152,7 @@
     <ClInclude Include="include\input\Keyboard.h" />
     <ClInclude Include="include\input\Mouse.h" />
     <ClInclude Include="include\utility\StringConversion.h" />
+    <ClInclude Include="include\utility\Timer.h" />
     <ClInclude Include="include\win\CustomWin.h" />
     <ClInclude Include="include\win\Window.h" />
     <ClInclude Include="include\win\WindowsMessageMap.h" />
@@ -161,6 +162,7 @@
     <ClCompile Include="src\input\Keyboard.cpp" />
     <ClCompile Include="src\input\Mouse.cpp" />
     <ClCompile Include="src\utility\StringConversion.cpp" />
+    <ClCompile Include="src\utility\Timer.cpp" />
     <ClCompile Include="src\WinMain.cpp" />
     <ClCompile Include="src\win\Window.cpp" />
     <ClCompile Include="src\win\WindowsMessageMap.cpp" />
