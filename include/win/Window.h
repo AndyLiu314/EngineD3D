@@ -25,6 +25,13 @@ public:
 		HRESULT hr;
 	};
 
+	class NoGfxException : public EngineException
+	{
+	public: 
+		using EngineException::EngineException;
+		const char* GetType() const noexcept override;
+	};
+
 private:
 	class WindowClass
 	{
@@ -80,3 +87,4 @@ private:
 
 #define EWND_EXCEPT(hr) Window::Exception(__LINE__, __FILE__, hr)
 #define EWND_LAST_EXCEPT() Window::Exception(__LINE__, __FILE__, GetLastError())
+#define EWND_NOGFX_EXCEPT() Window::NoGfxException(__LINE__, __FILE__)

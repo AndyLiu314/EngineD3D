@@ -3,6 +3,8 @@
 #include <sstream>
 #include "core/resource.h"
 
+
+/* --------- WINDOW EXCEPTIONS --------- */
 Window::Exception::Exception(int line, const char* file, HRESULT hr) noexcept
 	: EngineException(line, file), hr(hr)
 {
@@ -57,6 +59,14 @@ std::string Window::Exception::GetErrorString() const noexcept
 	return TranslateErrorCode(hr);
 }
 
+const char* Window::NoGfxException::GetType() const noexcept
+{
+	return "Engine Window Exception [No Graphics]";
+}
+/* --------- WINDOW EXCEPTIONS --------- */
+
+
+/* --------- WINDOW CLASS--------- */
 Window::WindowClass Window::WindowClass::wndClass;
 
 Window::WindowClass::WindowClass() noexcept
@@ -92,8 +102,10 @@ HINSTANCE Window::WindowClass::GetInstance() noexcept
 {
 	return wndClass.hInst;
 }
+/* --------- WINDOW CLASS--------- */
 
 
+/* --------- WINDOW --------- */
 Window::Window(int width, int height, const wchar_t* name)
 	: width(width), height(height)
 {
@@ -163,6 +175,10 @@ std::optional<int> Window::ProcessMessages()
 
 Graphics& Window::Gfx()
 {
+	if (!pGfx)
+	{
+		throw EWND_NOGFX_EXCEPT();
+	}
 	return *pGfx;
 }
 
@@ -299,3 +315,4 @@ LRESULT Window::HandleMsg(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) noe
 
 	return DefWindowProc(hWnd, msg, wParam, lParam);
 }
+/* --------- WINDOW --------- */
