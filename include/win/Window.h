@@ -3,7 +3,9 @@
 #include "core/EngineException.h"
 #include "input/Keyboard.h"
 #include "input/Mouse.h"
+#include "core/Graphics.h"
 #include <optional>
+#include <memory>
 
 class Window
 {
@@ -49,6 +51,7 @@ public:
 
 	void SetTitle(const std::string& title);
 	static std::optional<int> ProcessMessages();
+	Graphics& Gfx();
 
 public:
 	Keyboard kbd;
@@ -58,6 +61,7 @@ private:
 	int width;
 	int height;
 	HWND hWnd;
+	std::unique_ptr<Graphics> pGfx;
 
 	/**
 	* Initial windows procedure that runs during window creation.
