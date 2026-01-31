@@ -37,6 +37,12 @@
     <Filter Include="Source Files\input">
       <UniqueIdentifier>{d7697917-c732-4ae6-ae7b-db1f0fe3372d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\graphics">
+      <UniqueIdentifier>{118773fc-31bd-48d0-8ddc-000d18bd3ef4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\graphics">
+      <UniqueIdentifier>{a17bda5c-5186-406f-9928-4f1c8b9a6241}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\utility\StringConversion.h">
@@ -69,8 +75,8 @@
     <ClInclude Include="include\utility\Timer.h">
       <Filter>Header Files\utility</Filter>
     </ClInclude>
-    <ClInclude Include="include\core\Graphics.h">
-      <Filter>Header Files\core</Filter>
+    <ClInclude Include="include\graphics\Graphics.h">
+      <Filter>Header Files\graphics</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -101,8 +107,8 @@
     <ClCompile Include="src\utility\Timer.cpp">
       <Filter>Source Files\utility</Filter>
     </ClCompile>
-    <ClCompile Include="src\core\Graphics.cpp">
-      <Filter>Source Files\core</Filter>
+    <ClCompile Include="src\graphics\Graphics.cpp">
+      <Filter>Source Files\graphics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

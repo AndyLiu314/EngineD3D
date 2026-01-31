@@ -1,4 +1,4 @@
-#include "core/Graphics.h"
+#include "graphics/Graphics.h"
 #include "utility/StringConversion.h"
 #include <sstream>
 

@@ -3,7 +3,7 @@
 #include "core/EngineException.h"
 #include "input/Keyboard.h"
 #include "input/Mouse.h"
-#include "core/Graphics.h"
+#include "graphics/Graphics.h"
 #include <optional>
 #include <memory>
 

@@ -149,8 +149,8 @@
   <ItemGroup>
     <ClInclude Include="include\core\App.h" />
     <ClInclude Include="include\core\EngineException.h" />
-    <ClInclude Include="include\core\Graphics.h" />
     <ClInclude Include="include\core\resource.h" />
+    <ClInclude Include="include\graphics\Graphics.h" />
     <ClInclude Include="include\input\Keyboard.h" />
     <ClInclude Include="include\input\Mouse.h" />
     <ClInclude Include="include\utility\StringConversion.h" />
@@ -162,7 +162,7 @@
   <ItemGroup>
     <ClCompile Include="src\core\App.cpp" />
     <ClCompile Include="src\core\EngineException.cpp" />
-    <ClCompile Include="src\core\Graphics.cpp" />
+    <ClCompile Include="src\graphics\Graphics.cpp" />
     <ClCompile Include="src\input\Keyboard.cpp" />
     <ClCompile Include="src\input\Mouse.cpp" />
     <ClCompile Include="src\utility\StringConversion.cpp" />
