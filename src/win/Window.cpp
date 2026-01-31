@@ -1,7 +1,7 @@
 #include "win/Window.h"
 #include "utility/StringConversion.h"
-#include <sstream>
 #include "core/resource.h"
+#include <sstream>
 
 
 /* --------- WINDOW EXCEPTIONS --------- */
