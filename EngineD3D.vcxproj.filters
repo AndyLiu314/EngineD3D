@@ -78,6 +78,9 @@
     <ClInclude Include="include\graphics\Graphics.h">
       <Filter>Header Files\graphics</Filter>
     </ClInclude>
+    <ClInclude Include="include\graphics\DXGIInfoManager.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\WinMain.cpp">
@@ -108,6 +111,9 @@
       <Filter>Source Files\utility</Filter>
     </ClCompile>
     <ClCompile Include="src\graphics\Graphics.cpp">
+      <Filter>Source Files\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="src\graphics\DXGIInfoManager.cpp">
       <Filter>Source Files\graphics</Filter>
     </ClCompile>
   </ItemGroup>
