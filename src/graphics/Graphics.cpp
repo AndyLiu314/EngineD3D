@@ -6,18 +6,35 @@
 
 
 /* --------- GRAPHICS EXCEPTION --------- */
-Graphics::Exception::Exception(int line, const char* file, HRESULT hr) noexcept
+Graphics::Exception::Exception(int line, const char* file, HRESULT hr, std::vector<std::string> infoMsgs) noexcept
 	: EngineException(line, file), hr(hr)
 {
+	for (const auto& msg : infoMsgs)
+	{
+		info += msg;
+		info.push_back('\n');
+	}
+
+	if (!info.empty())
+	{
+		info.pop_back();
+	}
 }
 
 const char* Graphics::Exception::what() const noexcept
 {
 	std::ostringstream oss;
 	oss << GetType() << std::endl
-		<< "[Error Code] " << GetErrorCode() << std::endl
-		<< "[Description] " << GetErrorString() << std::endl
-		<< GetOriginString();
+		<< "[Error Code] 0x" << std::hex << std::uppercase << GetErrorCode()
+		<< std::dec << " (" << (unsigned long)GetErrorCode() << ")" << std::endl
+		<< "[Error String] " << GetErrorString() << std::endl;
+
+	if (!info.empty())
+	{
+		oss << "\n[Error Info]\n" << GetErrorInfo() << std::endl << std::endl;
+	}
+
+	oss << GetOriginString();
 	whatBuffer = oss.str();
 	return whatBuffer.c_str();
 }
@@ -60,6 +77,11 @@ std::string Graphics::Exception::GetErrorString() const noexcept
 	return TranslateErrorCode(hr);
 }
 
+std::string Graphics::Exception::GetErrorInfo() const noexcept
+{
+	return info;
+}
+
 const char* Graphics::DeviceRemovedException::GetType() const noexcept
 {
 	return "Engine Graphics Exception [Device Removed] (DXGI_ERROR_DEVICE_REMOVED)";
@@ -87,14 +109,14 @@ Graphics::Graphics(HWND hWnd)
 	sd.SwapEffect = DXGI_SWAP_EFFECT_DISCARD;
 	sd.Flags = 0;
 
-	UINT flags = 0;
+	UINT flags = 0u;
 	#ifdef _DEBUG
 	flags |= D3D11_CREATE_DEVICE_DEBUG;
 	#endif
 
 	HRESULT hr;
 
-	EGFX_THROW_FAILED(D3D11CreateDeviceAndSwapChain(
+	EGFX_THROW_FAILED_INFO(D3D11CreateDeviceAndSwapChain(
 		nullptr,
 		D3D_DRIVER_TYPE_HARDWARE,
 		nullptr,
@@ -111,19 +133,22 @@ Graphics::Graphics(HWND hWnd)
 
 	ID3D11Resource* pBackBuffer = nullptr;
 
-	EGFX_THROW_FAILED(pSwapChain->GetBuffer(
+	EGFX_THROW_FAILED_INFO(pSwapChain->GetBuffer(
 		0,
 		__uuidof(ID3D11Resource),
 		reinterpret_cast<void**>(&pBackBuffer)
 	));
 
-	EGFX_THROW_FAILED(pDevice->CreateRenderTargetView(
+	EGFX_THROW_FAILED_INFO(pDevice->CreateRenderTargetView(
 		pBackBuffer,
 		nullptr,
 		&pTarget
 	));
 
-	pBackBuffer->Release();
+	if (pBackBuffer != nullptr)
+	{
+		pBackBuffer->Release();
+	}
 }
 
 Graphics::~Graphics()
@@ -149,6 +174,10 @@ Graphics::~Graphics()
 void Graphics::EndFrame()
 {
 	HRESULT hr;
+	#ifdef _DEBUG
+	infoManager.Set();
+	#endif
+
 	if (FAILED(hr = pSwapChain->Present(1u, 0u)))
 	{
 		if (hr == DXGI_ERROR_DEVICE_REMOVED)
@@ -157,7 +186,7 @@ void Graphics::EndFrame()
 		}
 		else
 		{
-			EGFX_THROW_FAILED(hr);
+			throw EGFX_EXCEPT(hr);
 		}
 	}
 }
