@@ -26,15 +26,7 @@ DXGIInfoManager::DXGIInfoManager()
 	}
 
 	HRESULT hr;
-	EGFX_THROW_FAILED_NOINFO(DxgiGetDebugInterface(__uuidof(IDXGIInfoQueue), reinterpret_cast<void**>(&pDXGIInfoQueue)));
-}
-
-DXGIInfoManager::~DXGIInfoManager()
-{
-	if (pDXGIInfoQueue != nullptr)
-	{
-		pDXGIInfoQueue->Release();
-	}
+	EGFX_THROW_FAILED_NOINFO(DxgiGetDebugInterface(__uuidof(IDXGIInfoQueue), &pDXGIInfoQueue));
 }
 
 void DXGIInfoManager::SetMessageStart() noexcept

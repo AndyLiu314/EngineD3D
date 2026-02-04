@@ -2,6 +2,8 @@
 #include "utility/StringConversion.h"
 #include <sstream>
 
+namespace wrl = Microsoft::WRL;
+
 #pragma comment(lib, "d3d11.lib")
 
 
@@ -131,44 +133,19 @@ Graphics::Graphics(HWND hWnd)
 		&pContext
 	));
 
-	ID3D11Resource* pBackBuffer = nullptr;
+	wrl::ComPtr<ID3D11Resource> pBackBuffer;
 
 	EGFX_THROW_FAILED_INFO(pSwapChain->GetBuffer(
 		0,
 		__uuidof(ID3D11Resource),
-		reinterpret_cast<void**>(&pBackBuffer)
+		&pBackBuffer
 	));
 
 	EGFX_THROW_FAILED_INFO(pDevice->CreateRenderTargetView(
-		pBackBuffer,
+		pBackBuffer.Get(),
 		nullptr,
 		&pTarget
 	));
-
-	if (pBackBuffer != nullptr)
-	{
-		pBackBuffer->Release();
-	}
-}
-
-Graphics::~Graphics()
-{
-	if (pTarget != nullptr)
-	{
-		pTarget->Release();
-	}
-	if (pContext != nullptr)
-	{
-		pContext->Release();
-	}
-	if (pSwapChain != nullptr)
-	{
-		pSwapChain->Release();
-	}
-	if (pDevice != nullptr)
-	{
-		pDevice->Release();
-	}
 }
 
 void Graphics::EndFrame()
@@ -194,6 +171,6 @@ void Graphics::EndFrame()
 void Graphics::ClearBuffer(float r, float g, float b) noexcept
 {
 	const float colour[] = { r, g, b, 1.0f };
-	pContext->ClearRenderTargetView(pTarget, colour);
+	pContext->ClearRenderTargetView(pTarget.Get(), colour);
 }
 /* --------- GRAPHICS --------- */
