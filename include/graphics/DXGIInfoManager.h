@@ -11,10 +11,10 @@ public:
 	DXGIInfoManager(const DXGIInfoManager&) = delete;
 	DXGIInfoManager& operator=(const DXGIInfoManager&) = delete;
 
-	void Set() noexcept;
+	void SetMessageStart() noexcept;
 	std::vector<std::string> GetMessages() const;
 
 private:
-	unsigned long long next = 0u;
+	unsigned long long msgStart = 0u;
 	struct IDXGIInfoQueue* pDXGIInfoQueue = nullptr;
 };

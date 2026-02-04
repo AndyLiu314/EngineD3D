@@ -59,7 +59,7 @@ private:
 
 #ifdef _DEBUG
 #define EGFX_EXCEPT(hr) Graphics::Exception(__LINE__, __FILE__, hr, infoManager.GetMessages())
-#define EGFX_THROW_FAILED_INFO(hrcall) infoManager.Set(); if( FAILED( hr = (hrcall) ) ) throw EGFX_EXCEPT(hr)
+#define EGFX_THROW_FAILED_INFO(hrcall) infoManager.SetMessageStart(); if( FAILED( hr = (hrcall) ) ) throw EGFX_EXCEPT(hr)
 #define EGFX_DEVICE_REMOVED_EXCEPT(hr) Graphics::DeviceRemovedException(__LINE__, __FILE__, hr, infoManager.GetMessages())
 #else
 #define EGFX_EXCEPT(hr) Graphics::Exception(__LINE__, __FILE__, hr)

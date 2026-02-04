@@ -175,7 +175,7 @@ void Graphics::EndFrame()
 {
 	HRESULT hr;
 	#ifdef _DEBUG
-	infoManager.Set();
+	infoManager.SetMessageStart();
 	#endif
 
 	if (FAILED(hr = pSwapChain->Present(1u, 0u)))
