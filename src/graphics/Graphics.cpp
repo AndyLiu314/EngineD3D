@@ -218,17 +218,32 @@ void Graphics::DrawTestTriangle()
 
 	struct Vertex
 	{
-		float x;
-		float y;
+		struct
+		{
+			float x;
+			float y;
+		} pos;
+
+		struct
+		{
+			unsigned char r;
+			unsigned char g;
+			unsigned char b;
+			unsigned char a;
+		} colour;
 	};
 
 	const Vertex vertices[] =
 	{
-		{0.0f, 0.5f},
-		{0.5f, 0.0f},
-		{-0.5f, 0.0f},
+		{0.0f, 0.5f, 255, 0, 0, 0},
+		{0.5f, -0.5f, 0, 255, 0, 0},
+		{-0.5f, -0.5f, 0, 0, 255, 0},
+		{-0.3f, 0.3f, 0, 255, 0, 0},
+		{0.3f, 0.3f, 0, 0, 255, 0},
+		{0.0f, -0.8f, 255, 0, 0, 0},
 	};
 
+	/* Vertex Buffer */
 	D3D11_BUFFER_DESC bd = {};
 	bd.BindFlags = D3D11_BIND_VERTEX_BUFFER;
 	bd.Usage = D3D11_USAGE_DEFAULT;
@@ -236,16 +251,38 @@ void Graphics::DrawTestTriangle()
 	bd.MiscFlags = 0u;
 	bd.ByteWidth = sizeof(vertices);
 	bd.StructureByteStride = sizeof(Vertex);
-
 	D3D11_SUBRESOURCE_DATA sd = {};
 	sd.pSysMem = vertices;
-
 	wrl::ComPtr<ID3D11Buffer> pVertexBuffer;
 	EGFX_THROW_FAILED_INFO(pDevice->CreateBuffer(&bd, &sd, &pVertexBuffer));
 
+	/* Bind Vertex Buffer */
 	const UINT stride = sizeof(Vertex);
 	const UINT offset = 0u;
 	pContext->IASetVertexBuffers(0u, 1u, pVertexBuffer.GetAddressOf(), &stride, &offset);
+
+	/* Index Buffer */
+	const unsigned short indices[] =
+	{
+		0,1,2,
+		0,2,3,
+		0,4,1,
+		2,1,5,
+	};
+	wrl::ComPtr<ID3D11Buffer> pIndexBuffer;
+	D3D11_BUFFER_DESC ibd = {};
+	ibd.BindFlags = D3D11_BIND_INDEX_BUFFER;
+	ibd.Usage = D3D11_USAGE_DEFAULT;
+	ibd.CPUAccessFlags = 0u;
+	ibd.MiscFlags = 0u;
+	ibd.ByteWidth = sizeof(indices);
+	ibd.StructureByteStride = sizeof(unsigned short);
+	D3D11_SUBRESOURCE_DATA isd = {};
+	isd.pSysMem = indices;
+	EGFX_THROW_FAILED_INFO(pDevice->CreateBuffer(&ibd, &isd, &pIndexBuffer));
+
+	/* Bind Index Buffer */
+	pContext->IASetIndexBuffer(pIndexBuffer.Get(), DXGI_FORMAT_R16_UINT, 0u);
 
 	/* Pixel Shader */
 	wrl::ComPtr<ID3D11PixelShader> pPixelShader;
@@ -264,7 +301,9 @@ void Graphics::DrawTestTriangle()
 	wrl::ComPtr<ID3D11InputLayout> pInputLayout;
 	const D3D11_INPUT_ELEMENT_DESC ied[] =
 	{
-		{"Position", 0u, DXGI_FORMAT_R32G32_FLOAT, 0u, 0u, D3D11_INPUT_PER_VERTEX_DATA, 0u}
+		{"Position", 0u, DXGI_FORMAT_R32G32_FLOAT, 0u, 0u, D3D11_INPUT_PER_VERTEX_DATA, 0u},
+		{"Colour", 0u, DXGI_FORMAT_R8G8B8A8_UNORM, 0u, 8u, D3D11_INPUT_PER_VERTEX_DATA, 0u},
+
 	};
 	EGFX_THROW_FAILED_INFO(pDevice->CreateInputLayout(
 		ied,
@@ -291,6 +330,6 @@ void Graphics::DrawTestTriangle()
 	vp.TopLeftY = 0;
 	pContext->RSSetViewports(1u, &vp);
 
-	EGFX_THROW_INFO_ONLY(pContext->Draw((UINT)std::size(vertices), 0u));
+	EGFX_THROW_INFO_ONLY(pContext->DrawIndexed((UINT)std::size(indices), 0u, 0u));
 }
 /* --------- GRAPHICS --------- */
