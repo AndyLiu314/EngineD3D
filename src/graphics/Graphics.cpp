@@ -229,8 +229,6 @@ void Graphics::DrawTestTriangle()
 		{-0.5f, 0.0f},
 	};
 
-	wrl::ComPtr<ID3D11Buffer> pVertexBuffer;
-
 	D3D11_BUFFER_DESC bd = {};
 	bd.BindFlags = D3D11_BIND_VERTEX_BUFFER;
 	bd.Usage = D3D11_USAGE_DEFAULT;
@@ -242,18 +240,56 @@ void Graphics::DrawTestTriangle()
 	D3D11_SUBRESOURCE_DATA sd = {};
 	sd.pSysMem = vertices;
 
+	wrl::ComPtr<ID3D11Buffer> pVertexBuffer;
 	EGFX_THROW_FAILED_INFO(pDevice->CreateBuffer(&bd, &sd, &pVertexBuffer));
 
 	const UINT stride = sizeof(Vertex);
 	const UINT offset = 0u;
-	pContext->IASetVertexBuffers(0u, 1u, &pVertexBuffer, &stride, &offset);
+	pContext->IASetVertexBuffers(0u, 1u, pVertexBuffer.GetAddressOf(), &stride, &offset);
 
-	wrl::ComPtr<ID3D11VertexShader> pVertexShader;
+	/* Pixel Shader */
+	wrl::ComPtr<ID3D11PixelShader> pPixelShader;
 	wrl::ComPtr<ID3DBlob> pBlob;
+	EGFX_THROW_FAILED_INFO(D3DReadFileToBlob(L"PixelShader.cso", &pBlob));
+	EGFX_THROW_FAILED_INFO(pDevice->CreatePixelShader(pBlob->GetBufferPointer(), pBlob->GetBufferSize(), nullptr, &pPixelShader));
+	pContext->PSSetShader(pPixelShader.Get(), nullptr, 0u);
+
+	/* Vertex Shader */
+	wrl::ComPtr<ID3D11VertexShader> pVertexShader;
 	EGFX_THROW_FAILED_INFO(D3DReadFileToBlob(L"VertexShader.cso", &pBlob));
 	EGFX_THROW_FAILED_INFO(pDevice->CreateVertexShader(pBlob->GetBufferPointer(), pBlob->GetBufferSize(), nullptr, &pVertexShader));
-
 	pContext->VSSetShader(pVertexShader.Get(), nullptr, 0u);
+
+	/* Input Layout Of Vertices */
+	wrl::ComPtr<ID3D11InputLayout> pInputLayout;
+	const D3D11_INPUT_ELEMENT_DESC ied[] =
+	{
+		{"Position", 0u, DXGI_FORMAT_R32G32_FLOAT, 0u, 0u, D3D11_INPUT_PER_VERTEX_DATA, 0u}
+	};
+	EGFX_THROW_FAILED_INFO(pDevice->CreateInputLayout(
+		ied,
+		(UINT)std::size(ied),
+		pBlob->GetBufferPointer(),
+		pBlob->GetBufferSize(),
+		&pInputLayout
+	));
+	pContext->IASetInputLayout(pInputLayout.Get());
+
+	/* Bind Render Target */
+	pContext->OMSetRenderTargets(1u, pTarget.GetAddressOf(), nullptr);
+
+	/* Primitive Topology Setting To Triangle List */
+	pContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+
+	/* Configure Viewport */
+	D3D11_VIEWPORT vp;
+	vp.Width = 800;
+	vp.Height = 600;
+	vp.MinDepth = 0;
+	vp.MaxDepth = 1;
+	vp.TopLeftX = 0;
+	vp.TopLeftY = 0;
+	pContext->RSSetViewports(1u, &vp);
 
 	EGFX_THROW_INFO_ONLY(pContext->Draw((UINT)std::size(vertices), 0u));
 }
