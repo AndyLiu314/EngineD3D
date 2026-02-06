@@ -57,7 +57,7 @@ public:
 
 	void EndFrame();
 	void ClearBuffer(float r, float g, float b) noexcept;
-	void DrawTestTriangle(float angle);
+	void DrawTestTriangle(float angle, float x, float y);
 
 private:
 	Microsoft::WRL::ComPtr<ID3D11Device> pDevice;
