@@ -6,6 +6,7 @@ class App
 public:
 	App();
 	App(int width, int height, const wchar_t* name);
+	~App();
 
 	int Go();
 
@@ -14,4 +15,5 @@ private:
 	
 	Window wnd;
 	Timer timer;
+	std::vector<std::unique_ptr<class Box>> boxes;
 };

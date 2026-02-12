@@ -46,6 +46,18 @@
     <Filter Include="Shaders">
       <UniqueIdentifier>{38f6dbbe-c5dd-4add-8a8e-a721a9d67160}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\graphics\bindable">
+      <UniqueIdentifier>{271e193f-c25c-4a70-871a-0e00f347a558}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\graphics\drawable">
+      <UniqueIdentifier>{ed1aca81-d6b5-43ec-a653-2901f827c0f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\graphics\drawable">
+      <UniqueIdentifier>{1d935880-5eb7-4878-b3b1-0c71841784e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\graphics\bindable">
+      <UniqueIdentifier>{bc7d94d4-5955-4db1-ae60-8ee189316d98}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\utility\StringConversion.h">
@@ -90,6 +102,42 @@
     <ClInclude Include="include\utility\WindowExceptionMacros.h">
       <Filter>Header Files\utility</Filter>
     </ClInclude>
+    <ClInclude Include="include\graphics\bindable\Bindable.h">
+      <Filter>Header Files\graphics\bindable</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\bindable\BindableBase.h">
+      <Filter>Header Files\graphics\bindable</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\bindable\ConstantBuffers.h">
+      <Filter>Header Files\graphics\bindable</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\bindable\IndexBuffer.h">
+      <Filter>Header Files\graphics\bindable</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\bindable\InputLayout.h">
+      <Filter>Header Files\graphics\bindable</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\bindable\PixelShader.h">
+      <Filter>Header Files\graphics\bindable</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\bindable\Topology.h">
+      <Filter>Header Files\graphics\bindable</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\bindable\VertexBuffer.h">
+      <Filter>Header Files\graphics\bindable</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\bindable\VertexShader.h">
+      <Filter>Header Files\graphics\bindable</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\drawable\Box.h">
+      <Filter>Header Files\graphics\drawable</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\drawable\Drawable.h">
+      <Filter>Header Files\graphics\drawable</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\bindable\TransformCbuf.h">
+      <Filter>Header Files\graphics\bindable</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\WinMain.cpp">
@@ -124,6 +172,36 @@
     </ClCompile>
     <ClCompile Include="src\graphics\DXGIInfoManager.cpp">
       <Filter>Source Files\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="src\graphics\bindable\Bindable.cpp">
+      <Filter>Source Files\graphics\bindable</Filter>
+    </ClCompile>
+    <ClCompile Include="src\graphics\bindable\IndexBuffer.cpp">
+      <Filter>Source Files\graphics\bindable</Filter>
+    </ClCompile>
+    <ClCompile Include="src\graphics\bindable\InputLayout.cpp">
+      <Filter>Source Files\graphics\bindable</Filter>
+    </ClCompile>
+    <ClCompile Include="src\graphics\bindable\PixelShader.cpp">
+      <Filter>Source Files\graphics\bindable</Filter>
+    </ClCompile>
+    <ClCompile Include="src\graphics\bindable\Topology.cpp">
+      <Filter>Source Files\graphics\bindable</Filter>
+    </ClCompile>
+    <ClCompile Include="src\graphics\bindable\TransformCbuf.cpp">
+      <Filter>Source Files\graphics\bindable</Filter>
+    </ClCompile>
+    <ClCompile Include="src\graphics\bindable\VertexBuffer.cpp">
+      <Filter>Source Files\graphics\bindable</Filter>
+    </ClCompile>
+    <ClCompile Include="src\graphics\bindable\VertexShader.cpp">
+      <Filter>Source Files\graphics\bindable</Filter>
+    </ClCompile>
+    <ClCompile Include="src\graphics\drawable\Box.cpp">
+      <Filter>Source Files\graphics\drawable</Filter>
+    </ClCompile>
+    <ClCompile Include="src\graphics\drawable\Drawable.cpp">
+      <Filter>Source Files\graphics\drawable</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -150,6 +150,18 @@
     <ClInclude Include="include\core\App.h" />
     <ClInclude Include="include\core\EngineException.h" />
     <ClInclude Include="include\core\resource.h" />
+    <ClInclude Include="include\graphics\bindable\Bindable.h" />
+    <ClInclude Include="include\graphics\bindable\BindableBase.h" />
+    <ClInclude Include="include\graphics\bindable\ConstantBuffers.h" />
+    <ClInclude Include="include\graphics\bindable\IndexBuffer.h" />
+    <ClInclude Include="include\graphics\bindable\InputLayout.h" />
+    <ClInclude Include="include\graphics\bindable\PixelShader.h" />
+    <ClInclude Include="include\graphics\bindable\Topology.h" />
+    <ClInclude Include="include\graphics\bindable\TransformCbuf.h" />
+    <ClInclude Include="include\graphics\bindable\VertexBuffer.h" />
+    <ClInclude Include="include\graphics\bindable\VertexShader.h" />
+    <ClInclude Include="include\graphics\drawable\Box.h" />
+    <ClInclude Include="include\graphics\drawable\Drawable.h" />
     <ClInclude Include="include\graphics\DXGIInfoManager.h" />
     <ClInclude Include="include\graphics\Graphics.h" />
     <ClInclude Include="include\input\Keyboard.h" />
@@ -165,6 +177,16 @@
   <ItemGroup>
     <ClCompile Include="src\core\App.cpp" />
     <ClCompile Include="src\core\EngineException.cpp" />
+    <ClCompile Include="src\graphics\bindable\Bindable.cpp" />
+    <ClCompile Include="src\graphics\bindable\IndexBuffer.cpp" />
+    <ClCompile Include="src\graphics\bindable\InputLayout.cpp" />
+    <ClCompile Include="src\graphics\bindable\PixelShader.cpp" />
+    <ClCompile Include="src\graphics\bindable\Topology.cpp" />
+    <ClCompile Include="src\graphics\bindable\TransformCbuf.cpp" />
+    <ClCompile Include="src\graphics\bindable\VertexBuffer.cpp" />
+    <ClCompile Include="src\graphics\bindable\VertexShader.cpp" />
+    <ClCompile Include="src\graphics\drawable\Box.cpp" />
+    <ClCompile Include="src\graphics\drawable\Drawable.cpp" />
     <ClCompile Include="src\graphics\DXGIInfoManager.cpp" />
     <ClCompile Include="src\graphics\Graphics.cpp" />
     <ClCompile Include="src\input\Keyboard.cpp" />

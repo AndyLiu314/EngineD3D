@@ -1,0 +1,17 @@
+#include "graphics/bindable/PixelShader.h"
+#include "utility/GraphicsExceptionMacros.h"
+#include <d3dcompiler.h>
+
+PixelShader::PixelShader(Graphics& gfx, const std::wstring& path)
+{
+	INFOMAN(gfx);
+
+	Microsoft::WRL::ComPtr<ID3DBlob> pBlob;
+	EGFX_THROW_FAILED_INFO(D3DReadFileToBlob(path.c_str(), &pBlob));
+	EGFX_THROW_FAILED_INFO(GetDevice(gfx)->CreatePixelShader(pBlob->GetBufferPointer(), pBlob->GetBufferSize(), nullptr, &pPixelShader));
+}
+
+void PixelShader::Bind(Graphics& gfx) noexcept
+{
+	GetContext(gfx)->PSSetShader(pPixelShader.Get(), nullptr, 0u);
+}
