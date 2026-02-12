@@ -10,5 +10,5 @@ public:
 protected:
 	static ID3D11DeviceContext* GetContext(Graphics& gfx) noexcept;
 	static ID3D11Device* GetDevice(Graphics& gfx) noexcept;
-	static DXGIInfoManager& GetInfoManager(Graphics& gfx) noexcept(!_DEBUG);
+	static DXGIInfoManager& GetInfoManager(Graphics& gfx) noexcept(!IS_DEBUG);
 };

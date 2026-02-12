@@ -15,8 +15,8 @@
 #define EGFX_THROW_INFO_ONLY(call) (call)
 #endif
 
-#ifdef NDEBUG
-#define INFOMAN(gfx) HRESULT hr
-#else
+#ifdef _DEBUG
 #define INFOMAN(gfx) HRESULT hr; DXGIInfoManager& infoManager = GetInfoManager((gfx))
+#else
+#define INFOMAN(gfx) HRESULT hr
 #endif
