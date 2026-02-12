@@ -162,6 +162,7 @@
     <ClInclude Include="include\graphics\bindable\VertexShader.h" />
     <ClInclude Include="include\graphics\drawable\Box.h" />
     <ClInclude Include="include\graphics\drawable\Drawable.h" />
+    <ClInclude Include="include\graphics\drawable\DrawableBase.h" />
     <ClInclude Include="include\graphics\DXGIInfoManager.h" />
     <ClInclude Include="include\graphics\Graphics.h" />
     <ClInclude Include="include\input\Keyboard.h" />
