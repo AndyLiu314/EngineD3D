@@ -1,5 +1,6 @@
 #include "graphics/Graphics.h"
 #include "utility/StringConversion.h"
+#include "utility/GraphicsExceptionMacros.h"
 #include <sstream>
 #include <d3dcompiler.h>
 #include <DirectXMath.h>

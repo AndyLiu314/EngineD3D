@@ -1,6 +1,8 @@
 #include "graphics/DXGIInfoManager.h"
 #include "win/Window.h"
 #include "graphics/Graphics.h"
+#include "utility/GraphicsExceptionMacros.h"
+#include "utility/WindowExceptionMacros.h"
 #include <dxgidebug.h>
 #include <memory>
 

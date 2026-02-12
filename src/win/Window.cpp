@@ -1,6 +1,7 @@
 #include "win/Window.h"
 #include "utility/StringConversion.h"
 #include "core/resource.h"
+#include "utility/WindowExceptionMacros.h"
 #include <sstream>
 
 
