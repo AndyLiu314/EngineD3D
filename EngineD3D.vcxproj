@@ -168,6 +168,7 @@
     <ClInclude Include="include\input\Keyboard.h" />
     <ClInclude Include="include\input\Mouse.h" />
     <ClInclude Include="include\utility\GraphicsExceptionMacros.h" />
+    <ClInclude Include="include\utility\Math.h" />
     <ClInclude Include="include\utility\StringConversion.h" />
     <ClInclude Include="include\utility\Timer.h" />
     <ClInclude Include="include\utility\WindowExceptionMacros.h" />
