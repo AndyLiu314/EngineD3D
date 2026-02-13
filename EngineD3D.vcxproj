@@ -150,6 +150,12 @@
     <ClInclude Include="include\core\App.h" />
     <ClInclude Include="include\core\EngineException.h" />
     <ClInclude Include="include\core\resource.h" />
+    <ClInclude Include="include\geometry\Cone.h" />
+    <ClInclude Include="include\geometry\Cube.h" />
+    <ClInclude Include="include\geometry\IndexedTriangleList.h" />
+    <ClInclude Include="include\geometry\Plane.h" />
+    <ClInclude Include="include\geometry\Prism.h" />
+    <ClInclude Include="include\geometry\Sphere.h" />
     <ClInclude Include="include\graphics\bindable\Bindable.h" />
     <ClInclude Include="include\graphics\bindable\BindableBase.h" />
     <ClInclude Include="include\graphics\bindable\ConstantBuffers.h" />

@@ -58,6 +58,9 @@
     <Filter Include="Source Files\graphics\bindable">
       <UniqueIdentifier>{bc7d94d4-5955-4db1-ae60-8ee189316d98}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\geometry">
+      <UniqueIdentifier>{5e0ea1a5-5b3b-46c8-8ee5-7d3bb32a558c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\utility\StringConversion.h">
@@ -143,6 +146,24 @@
     </ClInclude>
     <ClInclude Include="include\utility\Math.h">
       <Filter>Header Files\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="include\geometry\Cone.h">
+      <Filter>Header Files\geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="include\geometry\Cube.h">
+      <Filter>Header Files\geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="include\geometry\IndexedTriangleList.h">
+      <Filter>Header Files\geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="include\geometry\Plane.h">
+      <Filter>Header Files\geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="include\geometry\Prism.h">
+      <Filter>Header Files\geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="include\geometry\Sphere.h">
+      <Filter>Header Files\geometry</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
