@@ -1,51 +1,29 @@
 #include "core/App.h"
 #include "graphics/drawable/Box.h"
+#include "geometry/Melon.h"
+#include "geometry/Pyramid.h"
+#include "utility/Math.h"
 #include <memory>
 #include <sstream>
+#include <algorithm>
 
 App::App()
 	: wnd(800, 600, L"Liao Boom Square")
 {
-	std::mt19937 rng(std::random_device{}());
-	std::uniform_real_distribution<float> adist(0.0f, 3.1415f * 2.0f);
-	std::uniform_real_distribution<float> ddist(0.0f, 3.1415f * 1.0f);
-	std::uniform_real_distribution<float> odist(0.0f, 3.1415f * 0.08f);
-	std::uniform_real_distribution<float> rdist(6.0f, 20.0f);
+	Factory f(wnd.Gfx());
+	drawables.reserve(nDrawables);
+	std::generate_n(std::back_inserter(drawables), nDrawables, f);
 
-	for (auto i = 0; i < 180; i++)
-	{
-		boxes.push_back(std::make_unique<Box>(
-			wnd.Gfx(),
-			rng,
-			adist,
-			ddist,
-			odist,
-			rdist
-		));
-	}
 	wnd.Gfx().SetProjection(DirectX::XMMatrixPerspectiveLH(1.0f, 3.0f / 4.0f, 0.5f, 40.0f));
 }
 
 App::App(int width, int height, const wchar_t* name)
 	: wnd(width, height, name)
 {
-	std::mt19937 rng(std::random_device{}());
-	std::uniform_real_distribution<float> adist(0.0f, 3.1415f * 2.0f);
-	std::uniform_real_distribution<float> ddist(0.0f, 3.1415f * 2.0f);
-	std::uniform_real_distribution<float> odist(0.0f, 3.1415f * 0.3f);
-	std::uniform_real_distribution<float> rdist(6.0f, 20.0f);
+	Factory f(wnd.Gfx());
+	drawables.reserve(nDrawables);
+	std::generate_n(std::back_inserter(drawables), nDrawables, f);
 
-	for (auto i = 0; i < 80; i++)
-	{
-		boxes.push_back(std::make_unique<Box>(
-			wnd.Gfx(),
-			rng,
-			adist,
-			ddist,
-			odist,
-			rdist
-		));
-	}
 	wnd.Gfx().SetProjection(DirectX::XMMatrixPerspectiveLH(1.0f, 3.0f / 4.0f, 0.5f, 40.0f));
 }
 
@@ -67,12 +45,12 @@ App::~App()
 
 void App::DoFrame()
 {
-	auto dt = timer.Mark();
+	const auto dt = timer.Mark();
 	wnd.Gfx().ClearBuffer(0.07f, 0.0f, 0.12f);
-	for (auto& b : boxes)
+	for (auto& d : drawables)
 	{
-		b->Update(dt);
-		b->Draw(wnd.Gfx());
+		d->Update(dt);
+		d->Draw(wnd.Gfx());
 	}
 	wnd.Gfx().EndFrame();
 }

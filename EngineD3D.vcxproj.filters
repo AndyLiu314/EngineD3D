@@ -61,6 +61,9 @@
     <Filter Include="Header Files\geometry">
       <UniqueIdentifier>{5e0ea1a5-5b3b-46c8-8ee5-7d3bb32a558c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\geometry">
+      <UniqueIdentifier>{f2c35dc8-58a1-4c1d-b04c-265eb26a2dd8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\utility\StringConversion.h">
@@ -165,6 +168,12 @@
     <ClInclude Include="include\geometry\Sphere.h">
       <Filter>Header Files\geometry</Filter>
     </ClInclude>
+    <ClInclude Include="include\geometry\Melon.h">
+      <Filter>Header Files\geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="include\geometry\Pyramid.h">
+      <Filter>Header Files\geometry</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\WinMain.cpp">
@@ -230,6 +239,12 @@
     <ClCompile Include="src\graphics\drawable\Drawable.cpp">
       <Filter>Source Files\graphics\drawable</Filter>
     </ClCompile>
+    <ClCompile Include="src\geometry\Melon.cpp">
+      <Filter>Source Files\geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="src\geometry\Pyramid.cpp">
+      <Filter>Source Files\geometry</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="EngineD3D.rc">
@@ -242,10 +257,16 @@
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="assets\shaders\VertexShader.hlsl">
+    <FxCompile Include="assets\shaders\ColourBlendPS.hlsl">
       <Filter>Shaders</Filter>
     </FxCompile>
-    <FxCompile Include="assets\shaders\PixelShader.hlsl">
+    <FxCompile Include="assets\shaders\ColourBlendVS.hlsl">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="assets\shaders\ColourIndexPS.hlsl">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="assets\shaders\ColourIndexVS.hlsl">
       <Filter>Shaders</Filter>
     </FxCompile>
   </ItemGroup>

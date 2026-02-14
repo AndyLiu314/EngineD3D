@@ -1,6 +1,6 @@
 #pragma once
 #include "Drawable.h"
-#include "../bindable/IndexBuffer.h"
+#include "graphics/bindable/IndexBuffer.h"
 
 template<class T>
 class DrawableBase : public Drawable
