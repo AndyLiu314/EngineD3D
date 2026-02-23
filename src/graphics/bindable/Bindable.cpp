@@ -12,9 +12,9 @@ ID3D11Device* Bindable::GetDevice(Graphics& gfx) noexcept
 
 DXGIInfoManager& Bindable::GetInfoManager(Graphics& gfx) noexcept(!IS_DEBUG)
 {
-	#ifdef _DEBUG
+#ifdef _DEBUG
 	return gfx.infoManager;
-	#else
+#else
 	throw std::logic_error("Poo! (tried to access gfx.infoManager in Release config)");
-	#endif
+#endif
 }

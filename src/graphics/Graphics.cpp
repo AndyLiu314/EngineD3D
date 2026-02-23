@@ -153,11 +153,15 @@ Graphics::Graphics(HWND hWnd)
 	sd.Flags = 0;
 
 	UINT flags = 0u;
-	#ifdef _DEBUG
+#ifdef _DEBUG
 	flags |= D3D11_CREATE_DEVICE_DEBUG;
-	#endif
+#endif
 
 	HRESULT hr;
+
+#ifdef _DEBUG
+	LoadLibrary(L"C:\\Program Files\\Microsoft PIX\\2601.15\\WinPixGpuCapturer.dll");
+#endif
 
 	EGFX_THROW_FAILED_INFO(D3D11CreateDeviceAndSwapChain(
 		nullptr,
@@ -237,9 +241,9 @@ Graphics::Graphics(HWND hWnd)
 void Graphics::EndFrame()
 {
 	HRESULT hr;
-	#ifdef _DEBUG
+#ifdef _DEBUG
 	infoManager.SetMessageStart();
-	#endif
+#endif
 
 	if (FAILED(hr = pSwapChain->Present(1u, 0u)))
 	{
